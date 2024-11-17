@@ -39,19 +39,6 @@ The VirusTotal Lookup is a Python script that extracts and filters MD5, SHA1, SH
 
 4. The report will be generated in `virustotal_report.txt`.
 
-## Build and Test
-To build and test the project, follow these steps:
-
-1. Ensure all dependencies are installed:
-    ```sh
-    pip install -r requirements.txt
-    ```
-
-2. Run the script:
-    ```sh
-    python VirusTotalLookup.py
-    ```
-
 ## Contribute
 Contributions are welcome! Please follow these steps to contribute:
 
