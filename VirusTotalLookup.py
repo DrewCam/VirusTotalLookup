@@ -27,7 +27,8 @@ sha1_pattern = r'\b[a-fA-F0-9]{40}\b'
 sha256_pattern = r'\b[a-fA-F0-9]{64}\b'
 ipv4_pattern = r'\b(?:\d{1,3}\.){3}\d{1,3}\b'
 ipv6_pattern = r'\b(?:[a-fA-F0-9]{1,4}:){7}[a-fA-F0-9]{1,4}\b|\b(?:[a-fA-F0-9]{0,4}:){2,7}(?:[a-fA-F0-9]{1,4})\b'
-domain_pattern = r'^(?:https?://|www\.)?[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$'
+# Domain pattern now supports multiple labels and optional protocol prefixes
+domain_pattern = r'(?:https?://)?(?:www\.)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}'
 
 # Extract hashes, IPs, and domains from raw.txt
 def extract_entities():
@@ -51,8 +52,12 @@ def extract_entities():
         if not is_internal_ip(ip):
             entities["IPv6"].append(ip)
     
-    # Extract domains
-    entities["Domain"].extend(re.findall(domain_pattern, content))
+    # Extract domains, removing protocols and 'www.' prefixes if present
+    for match in re.finditer(domain_pattern, content):
+        domain = match.group(0)
+        domain = re.sub(r'^https?://', '', domain)
+        domain = domain.lstrip('www.')
+        entities["Domain"].append(domain)
     
     # Write extracted entities to output file
     with open(output_file_path, 'w') as output_file:
