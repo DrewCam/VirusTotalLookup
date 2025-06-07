@@ -28,7 +28,8 @@ The VirusTotal Lookup is a Python script that extracts and filters MD5, SHA1, SH
     ```
 
 ## Usage
-1. Add the entities (hashes, IPs, domains) to `raw.txt`.
+1. Create a file named `raw.txt` in the project directory and populate it with
+   hashes, IP addresses, or domain names — one per line.
 
 2. Run the script:
     ```sh
