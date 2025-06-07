@@ -32,7 +32,7 @@ The VirusTotal Lookup is a Python script that extracts and filters MD5, SHA1, SH
 
 2. Run the script:
     ```sh
-    python VirusTotalLookup.py
+    python VirusTotal_lookup.py
     ```
 
 3. Follow the prompts to select the entity types you want to query.
