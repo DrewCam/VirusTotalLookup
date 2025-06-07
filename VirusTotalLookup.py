@@ -1,4 +1,5 @@
 import os
+import sys
 import requests
 import time
 from datetime import datetime
@@ -9,6 +10,9 @@ import ipaddress
 # Load environment variables from .env file
 load_dotenv()
 API_KEY = os.getenv("VT_API_KEY")
+if not API_KEY:
+    print("Error: VirusTotal API key is missing. Please set VT_API_KEY in your environment or .env file.")
+    sys.exit(1)
 API_URL_BASE = "https://www.virustotal.com/api/v3/"
 
 # Set rate limits
